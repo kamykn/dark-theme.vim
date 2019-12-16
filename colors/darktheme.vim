@@ -10,8 +10,15 @@ if exists("syntax_on")
   syntax reset
 endif
 
-set t_Co=256
+if &t_Co != 256
+  set t_Co=256
+endif
+
 let g:colors_name = "darktheme"
+
+if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
+  finish
+endif
 
 "    HEX   |256-color| 256-Color |      Type
 "          |         |  -> HEX   |
